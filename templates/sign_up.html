@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign-Up{% endblock title %}
+
+{% block loginOrLogout %}<a href="/login_page" class="nav-link active">Already a user</a>{% endblock loginOrLogout %}
+
+{% block body %}
+
+<div class="my-5 w-100 mx-auto position-absolute top-0">
+<main class="text-center form-signin">
+<form method = "post" action="/sign_up">
+{% csrf_token %}
+    <h1 class="border border-5 rounded-pill bg-dark w-25 mx-auto text-warning fw-bold my-3">Sign Up</h1>
+    <div class="row justify-content-center">
+    <div class="w-25 form-floating">
+      <input type="text" class="rounded-pill form-control" id="name" name="name" placeholder="Your Name">
+      <label for="floatingInput" style="padding-left: 20px;">Name</label>
+    </div>
+    <div class="w-25 form-floating">
+      <input type="email" class="rounded-pill form-control" id="email" name="email" placeholder="Your Email">
+      <label for="floatingInput" style="padding-left: 20px;">Email address</label>
+    </div>
+    </div>
+    <div class="row justify-content-center">
+    <div class="w-25 form-floating mt-3">
+      <input type="password" class="form-control rounded-pill" id="password" name="password" placeholder="Password">
+      <label for="floatingPassword" style="padding-left: 20px;">Password</label>
+    </div>
+    <div class="w-25 form-floating mt-3">
+      <input type="password" class="form-control rounded-pill" id="password2" name="password2" placeholder="Password" onkeyup='check();'>
+      <label for="floatingPassword" style="padding-left: 20px;">Confirm Password</label>
+    </div>
+    </div>
+    <button class="btn btn-primary my-4" type="submit">Register</button>
+    <div class="w-50 text-danger rounded-pill opacity-75 mx-auto bg-light">
+      {% if messages %}
+    {% for message in messages %}
+<div class="float alert alert-{{ message.tags }} alert-dismissible fade show my-0 flex-fill" role="alert">
+{{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    {% endfor %}
+{% endif %}
+    </div>
+  </form>
+</main>
+</div>
+
+{% endblock body %}
+{% block alert_message %}
+
+{% endblock alert_message %}

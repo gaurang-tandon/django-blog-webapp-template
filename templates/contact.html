@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Contact Us{% endblock title %}
+
+{% block loginOrLogout %}<a class="nav-link active" href="/login_page">Login</a>{% endblock loginOrLogout %}
+
+{% block alert_message %}
+
+{% if messages %}
+    {% for message in messages %}
+<div class="float alert alert-{{ message.tags }} text-danger text-center alert-dismissible fade show my-0 flex-fill" role="alert">
+{{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    {% endfor %}
+{% endif %}
+
+{% endblock alert_message %}
+
+{% block body %}
+
+
+<div class="w-50 container py-4">
+<h1 class="container text-center my-3">Contact Us</h1>
+  <!-- Bootstrap 5 starter form -->
+  <form id="contactForm" method="post" action="/contact">
+    {% csrf_token %}
+
+    <!-- Name input -->
+    <div class="w-50 mb-3 mx-auto d-block">
+      <label class="form-label" for="name"><b>Name</b></label>
+      <input class="form-control" id="name" type="text" name="name" placeholder="Your Name" />
+    </div>
+
+    <!-- Email address input -->
+    <div class="w-50 mb-3 mx-auto d-block">
+      <label class="form-label" for="email"><b>Email Address</b></label>
+      <input class="form-control" id="email" type="email" name="email" placeholder="Your Email" />
+    </div>
+
+    <!-- Message input -->
+    <div class="w-50 mb-3 mx-auto d-block">
+      <label class="form-label" for="desc"><b>Message</b></label>
+      <textarea class="form-control" id="desc" type="text" name="desc" placeholder="Whatever you want to say to us" style="height: 10rem;"></textarea>
+    </div>
+
+    <!-- Form submit button -->
+    <div class="w-50 d-grid mx-auto d-block">
+      <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+    </div>
+
+  </form>
+
+</div>
+
+
+{% endblock body %}

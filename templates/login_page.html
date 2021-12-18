@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Login{% endblock title %}
+
+{% block loginOrLogout %}<a href="/sign_up" class="nav-link active">New User-Sign Up</a>{% endblock loginOrLogout %}
+
+{% block body %}
+
+<div class="my-5 w-100 position-absolute top-0">
+<main class="text-center form-signin">
+<form method="post" action="/login_page">
+{% csrf_token %}
+    <div class="w-25 mx-auto form-floating mt-5">
+      <input type="text" class="rounded-pill px-4 form-control" id="name" name="name" placeholder="Your Name">
+      <label for="floatingInput">Name</label>
+    </div>
+    <div class="w-25 mx-auto form-floating my-2">
+      <input type="password" class="form-control rounded-pill px-4" id="password" name="password" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <button class="h1 border border-5 rounded-pill bg-dark w-25 mx-auto text-warning fw-bold my-3">Sign In</button>
+    <div class="w-25 mx-auto text-danger rounded-pill opacity-75 bg-light">
+      {% if messages %}
+    {% for message in messages %}
+<div class="float alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+{{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    {% endfor %}
+{% endif %}
+    </div>
+  </form>
+</main>
+</div>
+
+{% endblock body %}
